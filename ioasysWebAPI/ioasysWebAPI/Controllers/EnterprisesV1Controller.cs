@@ -10,7 +10,7 @@ namespace ioasysWebAPI.Controllers
 {
     public class EnterprisesV1Controller : ApiController
     {
-        private EnterpriseV1[] enterprises = new EnterpriseV1[]
+        private EnterpriseV1[] enterprisesList = new EnterpriseV1[]
         {
             new EnterpriseV1 {
                 id = 1,
@@ -49,24 +49,23 @@ namespace ioasysWebAPI.Controllers
 
         // GET: api/EnterprisesV1
         [Route("api/v1/enterprises")]
-        public IEnumerable<EnterpriseV1> Get()
+        public IHttpActionResult Get()
         {
-            return enterprises;
+            return Ok(new { enterprises = enterprisesList.ToList() });
         }
-
+        
         // GET: api/EnterprisesV1/5
         [Route("api/v1/enterprises/{id}")]
         public IHttpActionResult Get(int id)
         {
-            var enterprise = enterprises.FirstOrDefault(x => x.id == id);
+            var enterpriseById = enterprisesList.FirstOrDefault(x => x.id == id);
 
-            if (enterprise == null)
+            if (enterpriseById == null)
             {
                 return NotFound();
             }
 
-            return Ok(enterprise);
-            //return "value";
+            return Ok(new { enterprise = enterpriseById, success = true });
         }
 
         //// POST: api/EnterprisesV1
