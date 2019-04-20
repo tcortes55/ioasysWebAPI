@@ -53,7 +53,54 @@ namespace ioasysWebAPI.Controllers
         {
             return Ok(new { enterprises = enterprisesList.ToList() });
         }
-        
+
+        // GET: api/EnterprisesV1/5
+        [Route("api/v1/enterprises")]
+        public IHttpActionResult Get(int? enterprise_types)
+        {
+            var enterpriseByFilter = enterprisesList.Where(x => x.enterprise_type.id == enterprise_types).ToArray();
+
+            if (enterpriseByFilter == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(new { enterprises = enterpriseByFilter });
+        }
+
+        // GET: api/EnterprisesV1
+        [Route("api/v1/enterprises")]
+        public IHttpActionResult Get(string name)
+        {
+            var enterprisesByFilter = enterprisesList;
+
+            if (!String.IsNullOrEmpty(name))
+            {
+                enterprisesByFilter = enterprisesByFilter.Where(x => x.enterprise_name.ToLower().Contains(name.ToLower())).ToArray();
+            }
+
+            return Ok(new { enterprises = enterprisesByFilter.ToList() });
+        }
+
+        // GET: api/EnterprisesV1/5
+        [Route("api/v1/enterprises")]
+        public IHttpActionResult Get(int? enterprise_types, string name)
+        {
+            var enterpriseByFilter = enterprisesList.Where(x => x.enterprise_type.id == enterprise_types).ToArray();
+
+            if (!String.IsNullOrEmpty(name))
+            {
+                enterpriseByFilter = enterpriseByFilter.Where(x => x.enterprise_name.ToLower().Contains(name.ToLower())).ToArray();
+            }
+
+            if (enterpriseByFilter == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(new { enterprises = enterpriseByFilter });
+        }
+
         // GET: api/EnterprisesV1/5
         [Route("api/v1/enterprises/{id}")]
         public IHttpActionResult Get(int id)

@@ -10,7 +10,7 @@ namespace ioasysWebAPI.Controllers
 {
     public class EnterpriseTypesV1Controller : ApiController
     {
-        private EnterpriseTypeV1[] enterpriseTypes = new EnterpriseTypeV1[]
+        private EnterpriseTypeV1[] enterpriseTypesList = new EnterpriseTypeV1[]
         {
             new EnterpriseTypeV1 {id = 1, enterprise_type_name = "Technology" },
             new EnterpriseTypeV1 {id = 2, enterprise_type_name = "Finance" }
@@ -19,9 +19,10 @@ namespace ioasysWebAPI.Controllers
 
         // GET: api/EnterpriseTypesV1
         [Route("api/v1/enterprise_types")]
-        public IEnumerable<EnterpriseTypeV1> Get()
+        public IHttpActionResult Get()
         {
-            return enterpriseTypes;
+            return Ok(new { enterprise_types = enterpriseTypesList.ToList(), success = true });
+            //return enterpriseTypes;
             //return new string[] { "value1", "value2" };
         }
 
@@ -29,7 +30,7 @@ namespace ioasysWebAPI.Controllers
         [Route("api/v1/enterprise_types/{id}")]
         public IHttpActionResult Get(int id)
         {
-            var enterpriseType = enterpriseTypes.FirstOrDefault(x => x.id == id);
+            var enterpriseType = enterpriseTypesList.FirstOrDefault(x => x.id == id);
 
             if (enterpriseType == null)
             {
