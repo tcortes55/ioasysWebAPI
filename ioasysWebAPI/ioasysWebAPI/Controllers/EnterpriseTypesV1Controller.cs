@@ -1,10 +1,10 @@
-﻿using ioasysWebAPI.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ioasysWebAPI.Models;
 
 namespace ioasysWebAPI.Controllers
 {
@@ -13,7 +13,7 @@ namespace ioasysWebAPI.Controllers
         private EnterpriseTypeV1[] enterpriseTypes = new EnterpriseTypeV1[]
         {
             new EnterpriseTypeV1 {id = 1, enterprise_type_name = "Technology" },
-            new EnterpriseTypeV1 {id = 2, enterprise_type_name = "Industry" }
+            new EnterpriseTypeV1 {id = 2, enterprise_type_name = "Finance" }
         };
 
 
