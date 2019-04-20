@@ -14,11 +14,12 @@ namespace ioasysWebAPI
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            //config.Routes.MapHttpRoute(
+            //    //name: "DefaultApi",
+            //    name: "DefaultApiV1",
+            //    routeTemplate: "api/v{version}/testusers/{id}",
+            //    defaults: new { id = RouteParameter.Optional, controller = "TestUsersV1" }
+            //);
         }
     }
 }
