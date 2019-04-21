@@ -197,10 +197,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\EnterpriseModel2.cs" />
+    <Compile Include="Models\EnterpriseModel.cs" />
     <Compile Include="Models\EnterpriseTypeV1.cs" />
     <Compile Include="Models\EnterpriseV1.cs" />
-    <Compile Include="Models\ioasysEnterpriseContext.cs" />
     <Compile Include="Models\TestUserV1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -14,7 +14,7 @@ namespace ioasysWebAPI.Controllers
 {
     public class EnterpriseTypesV1Controller : ApiController
     {
-        private EnterpriseModel2 db = new EnterpriseModel2();
+        private EnterpriseModel db = new EnterpriseModel();
 
         // GET: api/EnterpriseTypesV1
         [Route("api/v1/enterprise_types")]

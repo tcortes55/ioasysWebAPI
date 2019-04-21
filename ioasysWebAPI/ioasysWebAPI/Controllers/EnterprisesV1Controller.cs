@@ -14,7 +14,7 @@ namespace ioasysWebAPI.Controllers
 {
     public class EnterprisesV1Controller : ApiController
     {
-        private EnterpriseModel2 db = new EnterpriseModel2();
+        private EnterpriseModel db = new EnterpriseModel();
 
         // GET: api/EnterprisesV1
         // GET: api/EnterprisesV1

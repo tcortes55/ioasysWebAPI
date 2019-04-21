@@ -5,10 +5,10 @@ namespace ioasysWebAPI.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class EnterpriseModel2 : DbContext
+    public partial class EnterpriseModel : DbContext
     {
-        public EnterpriseModel2()
-            : base("name=EnterpriseModel2")
+        public EnterpriseModel()
+            : base("name=EnterpriseModel")
         {
         }
 
