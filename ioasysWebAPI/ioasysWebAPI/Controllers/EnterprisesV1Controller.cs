@@ -228,6 +228,7 @@ namespace ioasysWebAPI.Controllers
 
         // POST: api/EnterprisesV1
         [ResponseType(typeof(EnterpriseV1))]
+        [Route("api/v1/enterprises/new")]
         public IHttpActionResult PostEnterpriseV1(EnterpriseV1 enterpriseV1)
         {
             if (!ModelState.IsValid)

@@ -24,6 +24,7 @@ namespace ioasysWebAPI.Models
         public int value { get; set; }
         public int share_price { get; set; }
 
+        [ForeignKey("enterprise_type")]
         [Column("enterprise_type")]
         public int enterprise_typeID { get; set; }
         public virtual EnterpriseTypeV1 enterprise_type { get; set; }

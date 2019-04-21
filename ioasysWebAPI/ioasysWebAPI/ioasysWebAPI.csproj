@@ -192,7 +192,6 @@
     <Compile Include="Controllers\EnterprisesV1Controller.cs" />
     <Compile Include="Controllers\EnterpriseTypesV1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TestUsersV1Controller.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -200,7 +199,6 @@
     <Compile Include="Models\EnterpriseModel.cs" />
     <Compile Include="Models\EnterpriseTypeV1.cs" />
     <Compile Include="Models\EnterpriseV1.cs" />
-    <Compile Include="Models\TestUserV1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
