@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace ioasysWebAPI.Models
 {
+    [Table("enterprise_types")]
     public class EnterpriseTypeV1
     {
         public int id { get; set; }
