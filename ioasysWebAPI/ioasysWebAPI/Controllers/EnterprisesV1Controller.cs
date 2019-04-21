@@ -16,7 +16,9 @@ namespace ioasysWebAPI.Controllers
     {
         private EnterpriseModel db = new EnterpriseModel();
 
-        // GET: api/EnterprisesV1
+        // COMENTÁRIO:
+        // Optei por utilizar a anotação Route para definir as rotas utilizadas para as diferentes requests.
+        // Também utilizo o método .Select() para assegurar que estou retornando exatamente as mesmas propriedades do exemplo disponibilizado
         [Route("api/v1/enterprises")]
         public IHttpActionResult Get()
         {
@@ -39,8 +41,7 @@ namespace ioasysWebAPI.Controllers
                 })
             });
         }
-
-        // GET: api/EnterprisesV1/5
+        
         [Route("api/v1/enterprises")]
         public IHttpActionResult Get(int? enterprise_types)
         {
@@ -70,8 +71,7 @@ namespace ioasysWebAPI.Controllers
                 })
             });
         }
-
-        // GET: api/EnterprisesV1
+        
         [Route("api/v1/enterprises")]
         public IHttpActionResult Get(string name)
         {
@@ -119,10 +119,7 @@ namespace ioasysWebAPI.Controllers
             }
 
         }
-
-
-
-        // GET: api/EnterprisesV1/5
+        
         [Route("api/v1/enterprises")]
         public IHttpActionResult Get(int? enterprise_types, string name)
         {
@@ -157,9 +154,7 @@ namespace ioasysWebAPI.Controllers
                 })
             });
         }
-
-
-        // GET: api/EnterprisesV1/5
+        
         [Route("api/v1/enterprises/{id}")]
         public IHttpActionResult Get(int id)
         {
@@ -190,43 +185,12 @@ namespace ioasysWebAPI.Controllers
         }
 
 
-
-        // PUT: api/EnterprisesV1/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutEnterpriseV1(int id, EnterpriseV1 enterpriseV1)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != enterpriseV1.id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(enterpriseV1).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EnterpriseV1Exists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/EnterprisesV1
+        // COMENTÁRIO:
+        // Apesar de este não ser um requisito, criei também um método POST para inserir novas empresas.
+        // Este método serviu para testar o modelo que criei. Testei inserindo um objeto JSON com estrutura
+        // semelhante ao exemplo disponibilizado, com duas diferenças: o objeto a ser inserid deve conter
+        // apenas o ID do enterprise_type (em vez do objeto), e não deve conter o seu próprio ID (que é
+        // gerado automaticamente ao ser inserido no banco de dados)
         [ResponseType(typeof(EnterpriseV1))]
         [Route("api/v1/enterprises/new")]
         public IHttpActionResult PostEnterpriseV1(EnterpriseV1 enterpriseV1)
@@ -240,22 +204,6 @@ namespace ioasysWebAPI.Controllers
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = enterpriseV1.id }, enterpriseV1);
-        }
-
-        // DELETE: api/EnterprisesV1/5
-        [ResponseType(typeof(EnterpriseV1))]
-        public IHttpActionResult DeleteEnterpriseV1(int id)
-        {
-            EnterpriseV1 enterpriseV1 = db.enterprises.Find(id);
-            if (enterpriseV1 == null)
-            {
-                return NotFound();
-            }
-
-            db.enterprises.Remove(enterpriseV1);
-            db.SaveChanges();
-
-            return Ok(enterpriseV1);
         }
 
         protected override void Dispose(bool disposing)

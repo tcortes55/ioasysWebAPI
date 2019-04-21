@@ -6,6 +6,13 @@ using System.Web;
 
 namespace ioasysWebAPI.Models
 {
+    /// <summary>
+    /// COMENTÁRIO:
+    /// 
+    /// Um dos requisitos da tarefa é possibilitar o versionamento da API.
+    /// Optei por utilizar o sufixo V{version} para os modelos, por exemplo EnterpriseV1,
+    /// e mapeá-los para a tabela correspondente no DB utilizando a anotação Table.
+    /// </summary>
     [Table("enterprises")]
     public class EnterpriseV1
     {
@@ -24,6 +31,8 @@ namespace ioasysWebAPI.Models
         public int value { get; set; }
         public int share_price { get; set; }
 
+        // COMENTÁRIO:
+        // Há uma foreign key relacionando as tabelas de empresas (enterprises) e de tipos de empresas (enterprise_types)
         [ForeignKey("enterprise_type")]
         [Column("enterprise_type")]
         public int enterprise_typeID { get; set; }

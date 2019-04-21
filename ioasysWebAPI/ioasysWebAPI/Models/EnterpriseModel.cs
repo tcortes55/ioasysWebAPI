@@ -17,10 +17,6 @@ namespace ioasysWebAPI.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<enterprise_types>()
-            //    .HasMany(e => e.enterprises)
-            //    .WithOptional(e => e.enterprise_types)
-            //    .HasForeignKey(e => e.enterprise_type);
         }
     }
 }
