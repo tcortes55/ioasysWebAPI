@@ -29,17 +29,68 @@ namespace ioasysWebAPI.Controllers
         //}
 
         // GET: api/EnterprisesV1/5
-        [ResponseType(typeof(EnterpriseV1))]
-        public IHttpActionResult GetEnterpriseV1(int id)
+        // TODO TARCISIO: Fix reference
+        //[Route("api/v1/enterprises")]
+        //public IHttpActionResult Get(int? enterprise_types)
+        //{
+        //    var enterpriseByFilter = db.enterprises.Where(x => x.enterprise_type.id == enterprise_types).ToArray();
+
+        //    if (enterpriseByFilter == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(new { enterprises = enterpriseByFilter });
+        //}
+
+        //[ResponseType(typeof(EnterpriseV1))]
+        //public IHttpActionResult GetEnterpriseV1(int id)
+        //{
+        //    EnterpriseV1 enterpriseV1 = db.enterprises.Find(id);
+        //    if (enterpriseV1 == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(enterpriseV1);
+        //}
+
+
+        // GET: api/EnterprisesV1
+        [Route("api/v1/enterprises")]
+        public IHttpActionResult Get(string name)
         {
-            EnterpriseV1 enterpriseV1 = db.enterprises.Find(id);
-            if (enterpriseV1 == null)
+            var enterprisesByFilter = db.enterprises.ToList();
+
+            if (!String.IsNullOrEmpty(name))
             {
-                return NotFound();
+                enterprisesByFilter = enterprisesByFilter.Where(x => x.enterprise_name.ToLower().Contains(name.ToLower())).ToList();
             }
 
-            return Ok(enterpriseV1);
+            return Ok(new { enterprises = enterprisesByFilter });
         }
+
+
+
+        // GET: api/EnterprisesV1/5
+        // TODO TARCISIO: Fix reference
+        //[Route("api/v1/enterprises")]
+        //public IHttpActionResult Get(int? enterprise_types, string name)
+        //{
+        //    var enterpriseByFilter = db.enterprises.Where(x => x.enterprise_type.id == enterprise_types).ToArray();
+
+        //    if (!String.IsNullOrEmpty(name))
+        //    {
+        //        enterpriseByFilter = enterpriseByFilter.Where(x => x.enterprise_name.ToLower().Contains(name.ToLower())).ToArray();
+        //    }
+
+        //    if (enterpriseByFilter == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(new { enterprises = enterpriseByFilter });
+        //}
 
         // PUT: api/EnterprisesV1/5
         [ResponseType(typeof(void))]

@@ -30,83 +30,97 @@ namespace ioasysWebAPI.Controllers
         //}
 
         // GET: api/EnterpriseTypesV1/5
-        [ResponseType(typeof(EnterpriseTypeV1))]
-        public IHttpActionResult GetEnterpriseTypeV1(int id)
+        [Route("api/v1/enterprise_types/{id}")]
+        public IHttpActionResult Get(int id)
         {
-            EnterpriseTypeV1 enterpriseTypeV1 = db.enterprise_types.Find(id);
-            if (enterpriseTypeV1 == null)
+            var enterpriseType = db.enterprise_types.FirstOrDefault(x => x.id == id);
+
+            if (enterpriseType == null)
             {
                 return NotFound();
             }
 
-            return Ok(enterpriseTypeV1);
+            return Ok(enterpriseType);
+            //return "value";
         }
 
-        // PUT: api/EnterpriseTypesV1/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutEnterpriseTypeV1(int id, EnterpriseTypeV1 enterpriseTypeV1)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[ResponseType(typeof(EnterpriseTypeV1))]
+        //public IHttpActionResult GetEnterpriseTypeV1(int id)
+        //{
+        //    EnterpriseTypeV1 enterpriseTypeV1 = db.enterprise_types.Find(id);
+        //    if (enterpriseTypeV1 == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (id != enterpriseTypeV1.id)
-            {
-                return BadRequest();
-            }
+        //    return Ok(enterpriseTypeV1);
+        //}
 
-            db.Entry(enterpriseTypeV1).State = EntityState.Modified;
+        //// PUT: api/EnterpriseTypesV1/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutEnterpriseTypeV1(int id, EnterpriseTypeV1 enterpriseTypeV1)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EnterpriseTypeV1Exists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    if (id != enterpriseTypeV1.id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    db.Entry(enterpriseTypeV1).State = EntityState.Modified;
 
-        // POST: api/EnterpriseTypesV1
-        [ResponseType(typeof(EnterpriseTypeV1))]
-        public IHttpActionResult PostEnterpriseTypeV1(EnterpriseTypeV1 enterpriseTypeV1)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!EnterpriseTypeV1Exists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            db.enterprise_types.Add(enterpriseTypeV1);
-            db.SaveChanges();
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-            return CreatedAtRoute("DefaultApi", new { id = enterpriseTypeV1.id }, enterpriseTypeV1);
-        }
+        //// POST: api/EnterpriseTypesV1
+        //[ResponseType(typeof(EnterpriseTypeV1))]
+        //public IHttpActionResult PostEnterpriseTypeV1(EnterpriseTypeV1 enterpriseTypeV1)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-        // DELETE: api/EnterpriseTypesV1/5
-        [ResponseType(typeof(EnterpriseTypeV1))]
-        public IHttpActionResult DeleteEnterpriseTypeV1(int id)
-        {
-            EnterpriseTypeV1 enterpriseTypeV1 = db.enterprise_types.Find(id);
-            if (enterpriseTypeV1 == null)
-            {
-                return NotFound();
-            }
+        //    db.enterprise_types.Add(enterpriseTypeV1);
+        //    db.SaveChanges();
 
-            db.enterprise_types.Remove(enterpriseTypeV1);
-            db.SaveChanges();
+        //    return CreatedAtRoute("DefaultApi", new { id = enterpriseTypeV1.id }, enterpriseTypeV1);
+        //}
 
-            return Ok(enterpriseTypeV1);
-        }
+        //// DELETE: api/EnterpriseTypesV1/5
+        //[ResponseType(typeof(EnterpriseTypeV1))]
+        //public IHttpActionResult DeleteEnterpriseTypeV1(int id)
+        //{
+        //    EnterpriseTypeV1 enterpriseTypeV1 = db.enterprise_types.Find(id);
+        //    if (enterpriseTypeV1 == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    db.enterprise_types.Remove(enterpriseTypeV1);
+        //    db.SaveChanges();
+
+        //    return Ok(enterpriseTypeV1);
+        //}
 
         protected override void Dispose(bool disposing)
         {
