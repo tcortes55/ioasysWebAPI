@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace ioasysWebAPI.Models
 {
+    [Table("enterprises")]
     public class EnterpriseV1
     {
         public int id { get; set; }
@@ -21,6 +23,8 @@ namespace ioasysWebAPI.Models
         public string country { get; set; }
         public int value { get; set; }
         public int share_price { get; set; }
-        public EnterpriseTypeV1 enterprise_type { get; set; }
+
+        //public int enterprise_type_id { get; set; }
+        //public virtual EnterpriseTypeV1 enterprise_type { get; set; }
     }
 }

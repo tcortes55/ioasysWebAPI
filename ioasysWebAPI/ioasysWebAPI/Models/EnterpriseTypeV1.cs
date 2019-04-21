@@ -11,5 +11,7 @@ namespace ioasysWebAPI.Models
     {
         public int id { get; set; }
         public string enterprise_type_name { get; set; }
+
+        //public virtual List<EnterpriseV1> enterprise { get; set; }
     }
 }

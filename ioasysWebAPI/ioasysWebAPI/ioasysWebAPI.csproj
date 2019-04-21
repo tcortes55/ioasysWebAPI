@@ -189,7 +189,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\EnterprisesV1Controller_.cs" />
+    <Compile Include="Controllers\EnterprisesV1Controller.cs" />
     <Compile Include="Controllers\EnterpriseTypesV1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestUsersV1Controller.cs" />
