@@ -17,80 +17,179 @@ namespace ioasysWebAPI.Controllers
         private EnterpriseModel db = new EnterpriseModel();
 
         // GET: api/EnterprisesV1
-        // GET: api/EnterprisesV1
         [Route("api/v1/enterprises")]
         public IHttpActionResult Get()
         {
-            return Ok(new { enterprises = db.enterprises.ToList() });
+            return Ok(new { enterprises = db.enterprises.ToList().Select(x => new {
+                    x.id,
+                    x.email_enterprise,
+                    x.facebook,
+                    x.twitter,
+                    x.linkedin,
+                    x.phone,
+                    x.own_enterprise,
+                    x.enterprise_name,
+                    x.photo,
+                    x.description,
+                    x.city,
+                    x.country,
+                    x.value,
+                    x.share_price,
+                    x.enterprise_type
+                })
+            });
         }
-        //public IQueryable<EnterpriseV1> Getenterprises()
-        //{
-        //    return db.enterprises;
-        //}
 
         // GET: api/EnterprisesV1/5
-        // TODO TARCISIO: Fix reference
-        //[Route("api/v1/enterprises")]
-        //public IHttpActionResult Get(int? enterprise_types)
-        //{
-        //    var enterpriseByFilter = db.enterprises.Where(x => x.enterprise_type.id == enterprise_types).ToArray();
+        [Route("api/v1/enterprises")]
+        public IHttpActionResult Get(int? enterprise_types)
+        {
+            var enterpriseByFilter = db.enterprises.Where(x => x.enterprise_type.id == enterprise_types).ToList();
 
-        //    if (enterpriseByFilter == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (enterpriseByFilter == null)
+            {
+                return NotFound();
+            }
 
-        //    return Ok(new { enterprises = enterpriseByFilter });
-        //}
-
-        //[ResponseType(typeof(EnterpriseV1))]
-        //public IHttpActionResult GetEnterpriseV1(int id)
-        //{
-        //    EnterpriseV1 enterpriseV1 = db.enterprises.Find(id);
-        //    if (enterpriseV1 == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(enterpriseV1);
-        //}
-
+            return Ok(new { enterprises = enterpriseByFilter.Select(x => new {
+                    x.id,
+                    x.email_enterprise,
+                    x.facebook,
+                    x.twitter,
+                    x.linkedin,
+                    x.phone,
+                    x.own_enterprise,
+                    x.enterprise_name,
+                    x.photo,
+                    x.description,
+                    x.city,
+                    x.country,
+                    x.value,
+                    x.share_price,
+                    x.enterprise_type
+                })
+            });
+        }
 
         // GET: api/EnterprisesV1
         [Route("api/v1/enterprises")]
         public IHttpActionResult Get(string name)
         {
-            var enterprisesByFilter = db.enterprises.ToList();
-
             if (!String.IsNullOrEmpty(name))
             {
-                enterprisesByFilter = enterprisesByFilter.Where(x => x.enterprise_name.ToLower().Contains(name.ToLower())).ToList();
+                return Ok(new { enterprises = db.enterprises.Where(x => x.enterprise_name.ToLower().Contains(name.ToLower())).Select(x => new {
+                        x.id,
+                        x.email_enterprise,
+                        x.facebook,
+                        x.twitter,
+                        x.linkedin,
+                        x.phone,
+                        x.own_enterprise,
+                        x.enterprise_name,
+                        x.photo,
+                        x.description,
+                        x.city,
+                        x.country,
+                        x.value,
+                        x.share_price,
+                        x.enterprise_type
+                    })
+                });
+            }
+            else
+            {
+                return Ok(new { enterprises = db.enterprises.ToList().Select(x => new {
+                        x.id,
+                        x.email_enterprise,
+                        x.facebook,
+                        x.twitter,
+                        x.linkedin,
+                        x.phone,
+                        x.own_enterprise,
+                        x.enterprise_name,
+                        x.photo,
+                        x.description,
+                        x.city,
+                        x.country,
+                        x.value,
+                        x.share_price,
+                        x.enterprise_type
+                    })
+                });
             }
 
-            return Ok(new { enterprises = enterprisesByFilter });
         }
 
 
 
         // GET: api/EnterprisesV1/5
-        // TODO TARCISIO: Fix reference
-        //[Route("api/v1/enterprises")]
-        //public IHttpActionResult Get(int? enterprise_types, string name)
-        //{
-        //    var enterpriseByFilter = db.enterprises.Where(x => x.enterprise_type.id == enterprise_types).ToArray();
+        [Route("api/v1/enterprises")]
+        public IHttpActionResult Get(int? enterprise_types, string name)
+        {
+            var enterpriseByFilter = db.enterprises.Where(x => x.enterprise_type.id == enterprise_types).ToList();
 
-        //    if (!String.IsNullOrEmpty(name))
-        //    {
-        //        enterpriseByFilter = enterpriseByFilter.Where(x => x.enterprise_name.ToLower().Contains(name.ToLower())).ToArray();
-        //    }
+            if (!String.IsNullOrEmpty(name))
+            {
+                enterpriseByFilter = enterpriseByFilter.Where(x => x.enterprise_name.ToLower().Contains(name.ToLower())).ToList();
+            }
 
-        //    if (enterpriseByFilter == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (enterpriseByFilter == null)
+            {
+                return NotFound();
+            }
 
-        //    return Ok(new { enterprises = enterpriseByFilter });
-        //}
+            return Ok(new { enterprises = enterpriseByFilter.Select(x => new {
+                    x.id,
+                    x.email_enterprise,
+                    x.facebook,
+                    x.twitter,
+                    x.linkedin,
+                    x.phone,
+                    x.own_enterprise,
+                    x.enterprise_name,
+                    x.photo,
+                    x.description,
+                    x.city,
+                    x.country,
+                    x.value,
+                    x.share_price,
+                    x.enterprise_type
+                })
+            });
+        }
+
+
+        // GET: api/EnterprisesV1/5
+        [Route("api/v1/enterprises/{id}")]
+        public IHttpActionResult Get(int id)
+        {
+            var enterpriseById = db.enterprises.FirstOrDefault(x => x.id == id);
+
+            if (enterpriseById == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(new { enterprise = new {
+                    enterpriseById.id,
+                    enterpriseById.email_enterprise,
+                    enterpriseById.facebook,
+                    enterpriseById.twitter,
+                    enterpriseById.linkedin,
+                    enterpriseById.phone,
+                    enterpriseById.own_enterprise,
+                    enterpriseById.enterprise_name,
+                    enterpriseById.photo,
+                    enterpriseById.description,
+                    enterpriseById.city,
+                    enterpriseById.country,
+                    enterpriseById.value,
+                    enterpriseById.share_price,
+                    enterpriseById.enterprise_type
+                }, success = true });
+        }
+
+
 
         // PUT: api/EnterprisesV1/5
         [ResponseType(typeof(void))]
